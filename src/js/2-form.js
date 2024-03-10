@@ -8,7 +8,7 @@ if (value) {
   let data = JSON.parse(value);
   email.value = data.email;
   message.value = data.message;
-}
+}else{}
 
 function hadlerInput(event) {
   event.preventDefault();
