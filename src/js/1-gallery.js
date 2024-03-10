@@ -1,9 +1,10 @@
-// import { images } from "./images";
-// Описаний в документації
-// import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
-// import "simplelightbox/dist/simple-lightbox.min.css";
-// console.log(images);
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+const lightbox = new SimpleLightbox('.gallery-link', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 const images = [
   {
     preview:
@@ -74,11 +75,11 @@ const listImages = document.querySelector('ul.gallery');
 const listMarkup = images
   .map(
     ({ preview, original, description }) => `<li class="gallery-item">
-  <a class="gallery-link" href=${original}>
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src=${preview}
-      alt=${description}
+      src="${preview}"
+      alt="${description}"
     />
   </a>
 </li>`
@@ -86,12 +87,3 @@ const listMarkup = images
   .join('');
 
 listImages.insertAdjacentHTML('beforeend', listMarkup);
-// Описаний в документації
-import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
-import 'simplelightbox/dist/simple-lightbox.min.css';
-//
-const lightbox = new SimpleLightbox('.gallery-link', {
-  captionsData: 'alt',
-  captionsDelay: 250,
-});
