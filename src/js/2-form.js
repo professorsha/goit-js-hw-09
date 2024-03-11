@@ -7,15 +7,15 @@ let value = localStorage.getItem('feedback-form-state') ?? '';
 try {
   let data = JSON.parse(value);
   console.log(data);
-  email.value = data.email;
-  message.value = data.message;
+  email.value = data.email.trim();
+  message.value = data.message.trim();
 } catch {
   console.log('No info');
 }
 function hadlerInput(event) {
   const feedbackForm = {
-    email: email.value,
-    message: message.value,
+    email: email.value.trim(),
+    message: message.value.trim(),
   };
   let jsn = JSON.stringify(feedbackForm);
   localStorage.setItem('feedback-form-state', jsn);
@@ -23,13 +23,14 @@ function hadlerInput(event) {
 
 function hadlerSubmit(event) {
   event.preventDefault();
-  
-  //   let data = JSON.parse(value);
-  //  console.log(
-  // `Об'єкт feedback-form-state:\n email: ${data.email} \n message: ${data.message}`
-  //  );
-  email.value = '';
+  if (email.value && message.value) {
+    let value = localStorage.getItem('feedback-form-state');
+    let data = JSON.parse(value);
+    console.log(data);
+    email.value = '';
   message.value = '';
   localStorage.removeItem('feedback-form-state');
+  } else {
+    alert('Введіть обидва значення');
+  }
 }
-
